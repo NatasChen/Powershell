@@ -1,0 +1,22 @@
+Try {
+
+    $Threshold = 80
+
+    $CpuLoad = (Get-WmiObject win32_processor | Measure-Object -property LoadPercentage -Average | Select Average ).Average
+
+    Write-Host "CPU load is" $CpuLoad "%"
+
+    IF($CpuLoad -gt $Threshold) {
+
+        Write-Host "CPU load greater than !" $Threshold "%"
+
+        Write-Host  "Script Check Failed"
+
+    } Else {      
+        Write-Host  "Script Check Passed"
+        }
+    } Catch {
+
+    Write-Host  "Script Check Failed"
+   
+    }
